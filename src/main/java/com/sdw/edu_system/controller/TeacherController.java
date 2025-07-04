@@ -17,7 +17,8 @@ public class TeacherController {
     private final TeacherRepository teacherRepository;
 
     @GetMapping
-    public String list() {
+    public String list(Model model) {
+        model.addAttribute("teachers", teacherRepository.findAll());
         return "teacher-list";
     }
 
@@ -31,6 +32,6 @@ public class TeacherController {
     public String add (@ModelAttribute Teacher teacher) {
         teacherRepository.save(teacher);
 
-        return "redirect:/teacher";
+        return "redirect:/teachers";
     }
 }
